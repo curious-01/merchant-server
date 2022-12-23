@@ -1,2 +1,3 @@
-# poc-app
-poc
+# Merchant-server
+
+Merchant server
