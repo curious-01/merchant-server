@@ -59,6 +59,30 @@ app.post('/subscribe', (req, res)=>{
     webpush.sendNotification(res_sub, payload).catch(err=> console.error(err));
 })
 
+//buyer route
+app.post('/buyer', (req, res)=>{
+    //get push subscription object from the request
+    const req_body = JSON.parse(req.body);
+    const req_sub = req_body.sub;
+    const req_buyer = req_body.buyer;
+    const req_qty = req_body.qty;
+    const req_location = req_body.location;
+    console.log(req_body);
+    let data_body = `${req_buyer} buyer available for ${req_qty} tons in ${req_location}`
+    //send status 201 for the request
+    res.status(201).json({})
+
+    //create paylod: specified the detals of the push notification
+    const payload = JSON.stringify({
+        title: "New Buyer",
+        body: data_body,
+        icon: "https://merchant-beta.web.app/static/media/logo.6404ae5bed5d141294430ce541e126bf.svg",
+      });
+
+    //pass the object into sendNotification fucntion and catch any error
+    webpush.sendNotification(req_sub, payload).catch(err=> console.error(err));
+})
+
 app.listen(port, ()=>{
     console.log(`server started on ${port}`)
 });
