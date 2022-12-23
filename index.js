@@ -62,12 +62,11 @@ app.post('/subscribe', (req, res)=>{
 //buyer route
 app.post('/buyer', (req, res)=>{
     //get push subscription object from the request
-    const req_body = JSON.parse(req.body);
-    const req_sub = req_body.sub;
-    const req_buyer = req_body.buyer;
-    const req_qty = req_body.qty;
-    const req_location = req_body.location;
-    console.log(req_body);
+    console.log(req.body);
+    const req_sub = JSON.parse(req.body.sub);
+    const req_buyer = req.body.buyer;
+    const req_qty = req.body.qty;
+    const req_location = req.body.location;
     let data_body = `${req_buyer} buyer available for ${req_qty} tons in ${req_location}`
     //send status 201 for the request
     res.status(201).json({})
