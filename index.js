@@ -1,11 +1,14 @@
-const express = require('express')
-const app = express()
-const port = 8080
+const express = require("express");
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const app = express();
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.get("/", (req, res) => {
+  res.send("Express on Vercel");
+});
+
+app.listen(5000, () => {
+  console.log("Running on port 5000.");
+});
+
+// Export the Express API
+module.exports = app;
